@@ -42,7 +42,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -94,26 +94,69 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
         {{-- NAVBAR --}}
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
-                <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a>
+                <a class="navbar-brand" href="{{ route('home') }}">Coffee<small>Blend</small></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
-                        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                        <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="{{ route('menu') }}" class="nav-link">Menu</a></li>
+                        <li class="nav-item"><a href="{{ route('services') }}" class="nav-link">Services</a></li>
+                        <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">About</a></li>
                         
                         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                         <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span></a>
-                        <li class="nav-item"><a href="login.html" class="nav-link">login</a></li>
-                        <li class="nav-item"><a href="register.html" class="nav-link">register</a></li>
+                        {{-- <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">login</a></li>
+                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">register</a></li> --}}
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent ftco-nav">
+                    {{-- <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+
+                    </ul> --}}
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -123,7 +166,7 @@
       
 
         {{-- YIELD MAIN CONTENT --}}
-        <main class="py-4">
+        <main">
             @yield('content')
         </main>
 
