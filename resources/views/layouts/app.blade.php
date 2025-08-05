@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Coffee Blend') }}</title> --}}
+    <title>@yield('title') | {{ config('app.name') }}</title>
+    <link rel="icon" href="{{ asset('assets/images/coffeeblend.png') }}" type="image/png">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -20,7 +22,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/open-iconic-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-    
+
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
@@ -32,7 +34,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.timepicker.css') }}">
 
-    
+
     <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -109,9 +111,9 @@
                         <li class="nav-item"><a href="{{ route('menu') }}" class="nav-link">Menu</a></li>
                         <li class="nav-item"><a href="{{ route('services') }}" class="nav-link">Services</a></li>
                         <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">About</a></li>
-                        
-                        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                        <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span></a>
+
+                        <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
+                        <li class="nav-item cart"><a href="{{route('cart')}}" class="nav-link"><span class="icon icon-shopping_cart"></span></a>
                         {{-- <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">login</a></li>
                         <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">register</a></li> --}}
                     </ul>
@@ -163,7 +165,7 @@
 	    </nav>
         <!-- END nav -->
 
-      
+
 
         {{-- YIELD MAIN CONTENT --}}
         <main">
@@ -192,7 +194,7 @@
                     <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">Recent Blog</h2>
                     <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                        <a class="blog-img mr-4" style="background-image: url({{asset('assets/images/image_1.jpg')}});"></a>
                         <div class="text">
                         <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                         <div class="meta">
@@ -203,7 +205,7 @@
                         </div>
                     </div>
                     <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+                        <a class="blog-img mr-4" style="background-image: url({{asset('assets/images/image_2.jpg ')}});"></a>
                         <div class="text">
                         <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                         <div class="meta">
@@ -243,7 +245,7 @@
                 <div class="col-md-12 text-center">
 
                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by Kimsan
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
                 </div>

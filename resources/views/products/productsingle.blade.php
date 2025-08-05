@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $product->name)
+
 @section('content')
 
     <section class="home-slider owl-carousel">
@@ -11,13 +13,21 @@
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
             	<h1 class="mb-3 mt-5 bread">Product Detail</h1>
-	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Product Detail</span></p>
+	            <p class="breadcrumbs"><span class="mr-2"><a href="{{route('home')}}">Home</a></span> <span>Product Detail</span></p>
             </div>
 
           </div>
         </div>
       </div>
     </section>
+
+	<div class="container">
+		@if( Session::has( 'success' ))
+			<p class="alert {{ Session::get('alert-class', 'alert-info') }}">
+				{{ Session::get( 'success' ) }}
+			</p>
+		@endif
+	</div>
 
     <section class="ftco-section">
     	<div class="container">
@@ -29,21 +39,21 @@
     				<h3>{{ $product->name }}</h3>
     				<p class="price"><span>${{ $product->price }}</span></p>
     				<p>{{ $product->description }}</p>
-    		
+
 						<div class="row mt-4">
 							<div class="col-md-6">
 								<div class="form-group d-flex">
-		              <div class="select-wrap">
-	                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                  <select name="" id="" class="form-control">
-	                  	<option value="">Small</option>
-	                    <option value="">Medium</option>
-	                    <option value="">Large</option>
-	                    <option value="">Extra Large</option>
-	                  </select>
-	                </div>
-		            </div>
-							</div>
+									<div class="select-wrap">
+										<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+										<select name="" id="" class="form-control">
+											<option value="">Small</option>
+											<option value="">Medium</option>
+											<option value="">Large</option>
+											<option value="">Extra Large</option>
+										</select>
+									</div>
+		            			</div>
+					</div>
 							<div class="w-100"></div>
 							<div class="input-group col-md-6 d-flex mb-3">
 	             	<span class="input-group-btn mr-2">
@@ -59,7 +69,18 @@
 	             	</span>
 	          	</div>
           	</div>
-          	<p><a href="cart.html" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+			<form action="{{ route('add.cart', $product->id) }}" method="POST">
+				@csrf
+					<input type="hidden" name="pro_id" value="{{ $product->id }}">
+					<input type="hidden" name="name" value="{{ $product->name }}">
+					<input type="hidden" name="price" value="{{ $product->price }}">
+					<input type="hidden" name="image" value="{{ $product->image }}">
+					@if($checkingInCart == 0)
+						<button href="{{ route('add.cart', $product->id) }}" type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+					@else
+						<button class="btn btn-primary py-3 px-5 btn btn-dark" disabled>Add to Cart</button>
+					@endif
+			</form>
     			</div>
     		</div>
     	</div>
@@ -88,10 +109,10 @@
                             </div>
                         </div>
                     </div>
-                @endforeach 
+                @endforeach
             </div>
     	</div>
     </section>
 
-    
+
 @endsection

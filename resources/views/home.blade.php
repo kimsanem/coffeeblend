@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+{{-- @section('title', 'Home | ' . config('app.name')) --}}
+@section('title', 'Home')
+
 @section('content')
 
 

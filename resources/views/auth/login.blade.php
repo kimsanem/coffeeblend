@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Login')
+
 @section('content')
 
     <section class="home-slider owl-carousel">
@@ -25,7 +27,7 @@
 			<form action="{{ route('login') }}" method="POST" class="billing-form ftco-bg-dark p-3 p-md-5">
                 @csrf  {{-- CSRF token for security to avoid page expired 419 --}}
               	<div class="row justify-content-center">
-				<h3 class="mb-4 billing-heading">Login</h3>
+				<h3 class="mb-4 billing-heading text-white">Login</h3>
 	          	<div class="row align-items-end">
 	          		<div class="col-md-12">
                         <div class="form-group">

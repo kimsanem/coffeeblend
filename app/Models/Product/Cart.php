@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Cart extends Model
 {
     use HasFactory;
 
-    protected $table = 'products';
+    protected $table = "cart";
 
     protected $fillable = [
-        "name", 
-        "image", 
+        "pro_id",
+        "name",
+        "image",
         "price",
-        "description",
+        "user_id"
     ];
-    public $timestamps = true;
 }
