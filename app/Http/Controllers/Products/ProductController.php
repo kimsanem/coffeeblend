@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Product\Product;
 use App\Models\Product\Cart;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\Product\Order;
+use App\Models\Product\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Session;
+
 class ProductController extends Controller
 {
     /**
@@ -23,11 +25,12 @@ class ProductController extends Controller
 
     public function singleProduct($id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
 
         // show related product not include current product
         $relatedProducts = Product::where('type', $product->type)
-            ->where('id', '!=', $id)->take(4)
+            ->where('id', '!=', $id)
+            ->take(4)
             ->orderBy('id', 'desc')
             ->get();
 
@@ -105,6 +108,12 @@ class ProductController extends Controller
     }
     // store checkout
     public function storeCheckout(Request $request) {
+        $checkout = Order::create($request->all());
+        echo "welcome to paypal payment";
+    }
+
+    //  MENU
+    public function menu(){
 
     }
     public function __invoke()

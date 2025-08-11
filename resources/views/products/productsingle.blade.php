@@ -33,7 +33,7 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="{{ asset('assets/images/' .$product->image. '') }}" class="image-popup"><img src="{{ asset('assets/images/' .$product->image. '') }}" class="img-fluid" alt="Colorlib Template"></a>
+    				<a class="image-popup"><img src="{{ asset('assets/images/' .$product->image. '') }}" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate text-white">
     				<h3>{{ $product->name }}</h3>

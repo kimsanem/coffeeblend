@@ -44,6 +44,7 @@
 </head>
 <body>
     <div id="app">
+        {{--  DASHBOARD   --}}
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -140,6 +141,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
+
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -147,6 +149,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('orders')}}">
+                                        {{ __('Orders') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('bookings')}}">
+                                        {{ __('Bookings') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -165,18 +173,15 @@
 	    </nav>
         <!-- END nav -->
 
-
-
         {{-- YIELD MAIN CONTENT --}}
-        <main">
+        <main>
             @yield('content')
         </main>
-
-
+        <!-- END MAIN CONTENT -->
 
         {{-- FOOTER --}}
         <footer class="ftco-footer ftco-section img">
-                <div class="overlay"></div>
+            <div class="overlay"></div>
             <div class="container">
                 <div class="row mb-5">
                 <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
@@ -196,36 +201,36 @@
                     <div class="block-21 mb-4 d-flex">
                         <a class="blog-img mr-4" style="background-image: url({{asset('assets/images/image_1.jpg')}});"></a>
                         <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
+                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                            </div>
                         </div>
                     </div>
                     <div class="block-21 mb-4 d-flex">
                         <a class="blog-img mr-4" style="background-image: url({{asset('assets/images/image_2.jpg ')}});"></a>
                         <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
+                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                            </div>
                         </div>
                     </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 mb-5 mb-md-5">
                     <div class="ftco-footer-widget mb-4 ml-md-4">
-                    <h2 class="ftco-heading-2">Services</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">Cooked</a></li>
-                        <li><a href="#" class="py-2 d-block">Deliver</a></li>
-                        <li><a href="#" class="py-2 d-block">Quality Foods</a></li>
-                        <li><a href="#" class="py-2 d-block">Mixed</a></li>
-                    </ul>
+                        <h2 class="ftco-heading-2">Services</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">Cooked</a></li>
+                            <li><a href="#" class="py-2 d-block">Deliver</a></li>
+                            <li><a href="#" class="py-2 d-block">Quality Foods</a></li>
+                            <li><a href="#" class="py-2 d-block">Mixed</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
@@ -242,15 +247,16 @@
                 </div>
                 </div>
                 <div class="row">
-                <div class="col-md-12 text-center">
-
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by Kimsan
-        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                </div>
+                    <div class="col-md-12 text-center">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by Kimsan
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
                 </div>
             </div>
         </footer>
+        <!-- END FOOTER -->
+
     </div>
 
 

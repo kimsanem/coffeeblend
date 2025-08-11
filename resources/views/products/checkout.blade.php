@@ -24,19 +24,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 ftco-animate">
-                    <form action="#" class="billing-form ftco-bg-dark p-3 p-md-5">
+
+                    <form method="POST" action="{{ route('process.checkout') }}" class="billing-form ftco-bg-dark p-3 p-md-5" method="POSTxp">
+                        @csrf
                         <h3 class="mb-4 billing-heading text-white">Billing Details</h3>
                         <div class="row align-items-end">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" name="first_name" class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lastname">Last Name</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" name="last_name" class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="w-100"></div>
@@ -45,13 +47,13 @@
                                     <label for="country">State / Country</label>
                                     <div class="select-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">France</option>
-                                            <option value="">Italy</option>
-                                            <option value="">Philippines</option>
-                                            <option value="">South Korea</option>
-                                            <option value="">Hongkong</option>
-                                            <option value="">Japan</option>
+                                        <select name="state" id="" class="form-control">
+                                            <option value="France">France</option>
+                                            <option value="Italy">Italy</option>
+                                            <option value="Philippines">Philippines</option>
+                                            <option value="South Korea">South Korea</option>
+                                            <option value="Hongkong">Hongkong</option>
+                                            <option value="Japan">Japan</option>
                                         </select>
                                     </div>
                                 </div>
@@ -60,46 +62,56 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="streetaddress">Street Address</label>
-                                    <input type="text" class="form-control" placeholder="House number and street name">
+                                    <textarea name="address" cols="10" rows="10" class="form-control" placeholder="House number and street name"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
-                                </div>
-                            </div>
+{{--                            <div class="col-md-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <input type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="w-100"></div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="towncity">Town / City</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input name="city" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="postcodezip">Postcode / ZIP *</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input name="zip_code" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input name="phone" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="emailaddress">Email Address</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input name="email" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input name="price" type="text" value="{{ Session::get('price')  }}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input name="user_id" type="hidden" value="{{ Auth::user()->id  }}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+
                             <div class="w-100"></div>
                             <div class="col-md-12">
                                 <div class="form-group mt-4">
                                     <div class="radio">
-                                        <p><a href="#"class="btn btn-primary py-3 px-4">Place an order</a></p>
-
+                                        <button type="submit" name="submit" class="btn btn-primary py-3 px-4">Place an order</button>
                                     </div>
                                 </div>
                             </div>
