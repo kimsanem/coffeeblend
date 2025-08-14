@@ -209,7 +209,7 @@
 	          	<span class="subheading">Discover</span>
 	            <h2 class="mb-4 text-white">Our Menu</h2>
 	            <p class="mb-4 text-white">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-	            <p><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
+	            <p><a href="{{ route('menu') }}" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
 	          </div>
     			</div>
     			<div class="col-md-6">
@@ -322,28 +322,28 @@
     	<div class="container-wrap">
     		<div class="row no-gutters">
 					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-1.jpg);">
+						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-1.jpg')}});">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
 						</a>
 					</div>
 					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-3.jpg);">
+						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-3.jpg')}});">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
 						</a>
 					</div>
 					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-3.jpg);">
+						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-3.jpg')}});">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
 						</a>
 					</div>
 					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-4.jpg);">
+						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-4.jpg')}});">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>

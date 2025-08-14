@@ -44,6 +44,12 @@
 							</tr>
 						</thead>
 						<tbody class="table-dark">
+                            @if($cartProducts->isEmpty())
+                                <div style="width: 1100px;" class="card p-4 text-center bg-warning">
+                                    <h4>Your cart is empty 🛒</h4>
+                                    <p>Looks like you haven’t added anything yet.</p>
+                                </div>
+                            @else
                             @foreach($cartProducts as $cartProduct)
                                 <tr class="text-center" style="height: 140px">
                                     <td class="product-remove"><a href="{{ route('cart.product.delete', $cartProduct->pro_id ) }}"><span class="icon-close"></span></a></td>
@@ -66,6 +72,7 @@
                                     <td class="total">${{$cartProduct->price}}</td>
                                 </tr><!-- END TR-->
                             @endforeach
+                            @endif
 						</tbody>
 					</table>
 				</div>
@@ -93,14 +100,14 @@
 						<span>${{ $totalPrice }}</span>
 					</p>
 				</div>
-                @if ($cartProduct->count() > 0)
+                @if ($cartProducts->count() > 0)
                     <form method="POST" action="{{ route('prepare.checkout') }}">
                         @csrf
-                        <input name="price" type="" value="{{$totalPrice}}">
-                        <button type="submit" name="submit" class="btn py-3 px-4 text-white">Proceed to checkout</button>
+                        <input name="price" type="hidden" value="{{$totalPrice}}">
+                        <button type="submit" name="submit" class="btn btn-primary py-3 px-4">Proceed to checkout</button>
                     </form>
                 @else
-                    <p class="text-center"><a href="{{ route('cart' )}}" class="btn btn-primary py-3 px-4">You cannot checkout because you have no items in cart</a></p>
+                    <a href="{{ route('cart' )}}" class="btn btn-primary py-3 px-4">No items in cart</a>
                 @endif
 			</div>
 		</div>

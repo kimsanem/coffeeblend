@@ -111,11 +111,6 @@ class ProductController extends Controller
         $checkout = Order::create($request->all());
         echo "welcome to paypal payment";
     }
-
-    //  MENU
-    public function menu(){
-
-    }
     public function __invoke()
     {
 

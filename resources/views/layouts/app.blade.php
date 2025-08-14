@@ -115,8 +115,6 @@
 
                         <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
                         <li class="nav-item cart"><a href="{{route('cart')}}" class="nav-link"><span class="icon icon-shopping_cart"></span></a>
-                        {{-- <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">login</a></li>
-                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">register</a></li> --}}
                     </ul>
                 </div>
 
