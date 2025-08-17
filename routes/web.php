@@ -70,6 +70,9 @@ Route::group(['prefix'=> 'users'], function () {
 });
 
 
-Route::get('admin/login', [AdminsController::class, 'viewLogin'])->name('view.login');
+Route::get('admin/login', [AdminsController::class, 'viewLogin'])->name('view.login')->middleware('check.for.auth');
 Route::post('admin/login', [AdminsController::class, 'checkLogin'])->name('check.login');
-Route::get('admin/index', [AdminsController::class,'index'])->name('admins.dashboard');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('index', [AdminsController::class,'index'])->name('admins.dashboard');
+});
