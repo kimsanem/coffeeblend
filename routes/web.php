@@ -24,9 +24,9 @@ Auth::routes();
 
 
 Route::get('/', function () {
-    if(Auth::check()) {
+    if(Auth::check()) {  //if logged in go to /
         return redirect()->route('/');
-    }else{
+    }else{  // if not (logged out) then go to login
         return redirect()->route('login');
     }
     return view(compact('login'));
@@ -34,10 +34,10 @@ Route::get('/', function () {
 
 // ROUTE FOR NAVIGATION
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/menu', [App\Http\Controllers\MenuController::class, 'menu'])->name('menu');
-Route::get('/services', [App\Http\Controllers\ServicesController::class, 'index'])->name('services');
-Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
-Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
+Route::get('menu', [App\Http\Controllers\MenuController::class, 'menu'])->name('menu');
+Route::get('services', [App\Http\Controllers\ServicesController::class, 'index'])->name('services');
+Route::get('about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
+Route::get('contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 
 
 Route::group(['prefix' => 'products'], function () {
@@ -45,8 +45,8 @@ Route::group(['prefix' => 'products'], function () {
     // Route::get('/products', [ProductController::class, 'index'])->name('products');
     Route::get('cart', [ProductController::class, 'cart'])->name('cart');
     Route::get('cart-delete/{id}', [ProductController::class, 'deleteProductCart'])->name('cart.product.delete');
-    Route::get('/{id}', [ProductController::class, 'singleProduct'])->name('product.single');
-    Route::post('/{id}', [ProductController::class, 'addToCart'])->name('add.cart');
+    Route::get('{id}', [ProductController::class, 'singleProduct'])->name('product.single');
+    Route::post('{id}', [ProductController::class, 'addToCart'])->name('add.cart');
 
     //checkout route
     Route::post('prepare-checkout', [ProductController::class, 'prepareCheckout'])->name('prepare.checkout');
@@ -61,13 +61,15 @@ Route::group(['prefix' => 'products'], function () {
 
 Route::group(['prefix'=> 'users'], function () {
     // user bookings
-    Route::get('/users/orders', [UsersController::class, 'displayOrders'])->name('orders');
-    Route::get('/users/bookings', [UsersController::class, 'displayBookings'])->name('bookings');
+    Route::get('orders', [UsersController::class, 'displayOrders'])->name('orders');
+    Route::get('bookings', [UsersController::class, 'displayBookings'])->name('bookings');
 
     // write review
-    Route::get('/users/write-review', [UsersController::class, 'writeReview'])->name('write.review');
-    Route::post('/users/write-review', [UsersController::class, 'processWriteReview'])->name('process.write.review');
+    Route::get('write-review', [UsersController::class, 'writeReview'])->name('write.review');
+    Route::post('write-review', [UsersController::class, 'processWriteReview'])->name('process.write.review');
 });
 
 
-Route::get('/admin/login', [AdminsController::class, 'viewLogin'])->name('view.login');
+Route::get('admin/login', [AdminsController::class, 'viewLogin'])->name('view.login');
+Route::post('admin/login', [AdminsController::class, 'checkLogin'])->name('check.login');
+Route::get('admin/index', [AdminsController::class,'index'])->name('admins.dashboard');
