@@ -15,12 +15,12 @@ class Order extends Model
         "first_name",
         "last_name",
         "state",
-        "address",
-        "city",
         "zip_code",
         "phone",
-        "email",
+        "address",
+        "city",
         "price",
+        "email",
         "user_id",
         "status"
     ];

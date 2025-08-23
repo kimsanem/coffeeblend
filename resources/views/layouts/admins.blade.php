@@ -29,10 +29,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
+                        <a class="nav-link" href="{{route('all.admins')}}" style="margin-left: 20px;">Admins</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="orders-admins/show-orders.html" style="margin-left: 20px;">Orders</a>
+                        <a class="nav-link" href="{{route('all.orders')}}" style="margin-left: 20px;">Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="products-admins/show-products.html" style="margin-left: 20px;">Products</a>
@@ -54,11 +54,21 @@
                                 {{ Auth::guard('admin')->user()->name }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+
+                                <a class="dropdown-item" href="{{route('all.orders')}}">
+                                    {{ __('Orders') }}
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    {{ __('Products') }}
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    {{ __('Bookings') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('view.login') }}"
                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>

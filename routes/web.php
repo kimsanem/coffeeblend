@@ -72,7 +72,19 @@ Route::group(['prefix'=> 'users'], function () {
 
 Route::get('admin/login', [AdminsController::class, 'viewLogin'])->name('view.login')->middleware('check.for.auth');
 Route::post('admin/login', [AdminsController::class, 'checkLogin'])->name('check.login');
+Route::post('admin/logout', [adminsController::class, 'logout'])->name('admin.logout');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], routes: function () {
     Route::get('index', [AdminsController::class,'index'])->name('admins.dashboard');
+
+    // admins section
+    Route::get('all-admins', [AdminsController::class,'displayAllAdmins'])->name('all.admins');
+    Route::get('create-admin', [AdminsController::class, 'createAdmin'])->name('create.admin');
+    Route::post('create-admin', [adminsController::class, 'storeAdmin'])->name('store.admin');
+    Route::delete('delete-admin/{id}', [adminsController::class, 'deleteAdmin'])->name('delete.admin');
+
+    Route::get('all-orders', [AdminsController::class, 'displayAllOrders'])->name('all.orders');
+    Route::get('edit-order/{id}', [AdminsController::class, 'editOrder'])->name('edit.order');
+    Route::put('edit-order/{id}', [AdminsController::class, 'updateOrder'])->name('update.order');
 });

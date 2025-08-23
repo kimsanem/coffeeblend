@@ -54,7 +54,7 @@
                                 <tr class="text-center" style="height: 140px">
                                     <td class="product-remove"><a href="{{ route('cart.product.delete', $cartProduct->pro_id ) }}"><span class="icon-close"></span></a></td>
 
-                                    <td class="image-prod"><img width="60" height="60" src="{{ asset('assets/images/' .$cartProduct->image .'') }}";></img></td>
+                                    <td class="image-prod"><img width="60" height="60" src="{{ asset('assets/images/' .$cartProduct->image.'') }}"></img></td>
 
                                     <td class="product-name">
                                         <h3>{{$cartProduct->name}}</h3>
