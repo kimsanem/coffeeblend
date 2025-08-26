@@ -10,10 +10,14 @@ use App\Models\Product\Booking;
 use App\Models\Admin\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use File;
+use function Illuminate\Events\queueable;
 
 class AdminsController extends Controller
 {
 
+
+    // AUTH
     protected function guard()
     {
         return Auth::guard('admin');
@@ -42,15 +46,20 @@ class AdminsController extends Controller
         return redirect()->route('view.login');
     }
 
+
+    // DASHBOARD
     public function index()
     {
         $productsCount = Product::select()->count();
         $ordersCount = Order::select()->count();
         $bookingsCount = Booking::select()->count();
         $adminsCount = Admin::select()->count();
+
         return view('admins.index', compact('productsCount', 'ordersCount', 'bookingsCount', 'adminsCount'));
     }
 
+
+    // ADMINS
     public function displayAllAdmins(){
         $allAdmins = Admin::select()->orderBy('id', 'desc')->get();
 
@@ -89,6 +98,9 @@ class AdminsController extends Controller
         return redirect()->back()->with(['deleted'=>"admin deleted successfully."]);
     }
 
+
+
+    // ORDERS
     public function displayAllOrders() {
         $allOrders = Order::select()->orderBy('id', 'desc')->get();
 
@@ -107,6 +119,57 @@ class AdminsController extends Controller
         $order->update($request->all());
 
         return redirect()->route('all.orders')->with(['success' => "order updated successfully."]);
+    }
+    public function deleteOrder($id){
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return redirect()->route('all.orders')->with(['delete' => "order deleted successfully."]);
+    }
+
+    // PRODUCTS
+    public function displayAllProducts(){
+        $allProducts = Product::select()->orderBy('id', 'desc')->get();
+        return view('admins.allproducts', compact('allProducts'));
+    }
+    public function createProduct(){
+        return view('admins.createproducts');
+    }
+
+    public function storeProduct(Request $request){
+
+        $destinationPath = 'assets/images/';
+        $myimage = $request->image->getClientOriginalName();
+        $request->image->move(public_path($destinationPath), $myimage);
+
+        $storeProducts = Product::Create([
+            "name" => $request->name,
+            "image" => $myimage,
+            "price" => $request->price,
+            "description" => $request->description,
+            "type" => $request->type
+        ]);
+
+        if($storeProducts){
+            return Redirect()->route('all.products')->with(['success'=>"new product created successfully."]);
+        }
+    }
+    public function deleteProduct($id){
+        $product = Product::findOrFail($id);
+        if(File::exists(public_path('assets/images/' . $product->image))){
+            File::delete(public_path('assets/images/' . $product->image));
+        }else{
+            //dd('File does not exists.');
+        }
+        $product->delete();
+        if($product){
+            return redirect()->route('all.products')->with(['deleted'=>"product deleted successfully."]);
+        }
+    }
+
+    // BOOKINGS
+    public function displayAllBookings(){
+        $allBookings = Booking::select()->orderBy('id', 'desc')->get();
+        return view('admins.allbookings', compact('allBookings'));
     }
 
 }

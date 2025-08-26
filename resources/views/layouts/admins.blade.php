@@ -35,10 +35,10 @@
                         <a class="nav-link" href="{{route('all.orders')}}" style="margin-left: 20px;">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products-admins/show-products.html" style="margin-left: 20px;">Products</a>
+                        <a class="nav-link" href="{{route('all.products')}}" style="margin-left: 20px;">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="bookings-admins/show-bookings.html" style="margin-left: 20px;">Bookings</a>
+                        <a class="nav-link" href="{{ route('all.bookings') }}" style="margin-left: 20px;">Bookings</a>
                     </li>
                 </ul>
                 @endauth
@@ -58,10 +58,10 @@
                                 <a class="dropdown-item" href="{{route('all.orders')}}">
                                     {{ __('Orders') }}
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{route('all.products')}}">
                                     {{ __('Products') }}
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{route('all.bookings')}}">
                                     {{ __('Bookings') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('view.login') }}"

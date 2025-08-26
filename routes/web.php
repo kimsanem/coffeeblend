@@ -84,7 +84,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], routes: functi
     Route::post('create-admin', [adminsController::class, 'storeAdmin'])->name('store.admin');
     Route::delete('delete-admin/{id}', [adminsController::class, 'deleteAdmin'])->name('delete.admin');
 
+
+    // orders section
     Route::get('all-orders', [AdminsController::class, 'displayAllOrders'])->name('all.orders');
     Route::get('edit-order/{id}', [AdminsController::class, 'editOrder'])->name('edit.order');
     Route::put('edit-order/{id}', [AdminsController::class, 'updateOrder'])->name('update.order');
+    Route::get('delete-order/{id}', [AdminsController::class, 'deleteOrder'])->name('delete.order');
+
+    // products section
+    Route::get('all-products', [AdminsController::class, 'displayAllProducts'])->name('all.products');
+    Route::get('create-product', [AdminsController::class, 'createProduct'])->name('create.product');
+    Route::post('create-product', [AdminsController::class, 'storeProduct'])->name('store.product');
+    Route::get('delete-product/{id}', [AdminsController::class, 'deleteProduct'])->name('delete.product');
+
+    // bookings section
+    Route::get('all-bookings', [AdminsController::class, 'displayAllBookings'])->name('all.bookings');
 });

@@ -7,6 +7,10 @@
             <p class="alert {{ Session::get('alert-class', 'alert-primary') }}">
                 {{ session( 'success' ) }}
             </p>
+        @elseif( session( 'delete' ))
+            <p class="alert {{ Session::get('alert-class', 'alert-success') }}">
+                {{ session( 'delete' ) }}
+            </p>
         @endif
     </div>
 
@@ -48,7 +52,7 @@
 
                             <td>{{$order->status}}</td>
                             <td><a href="{{route('edit.order', $order->id)}}" class="btn btn-warning  text-center ">change status</a></td>
-                            <td><a href="" class="btn btn-danger  text-center ">delete</a></td>
+                            <td><a href="{{route('delete.order',$order->id)}}" class="btn btn-danger  text-center ">delete</a></td>
                         </tr>
                         @endforeach
                         </tbody>

@@ -85,7 +85,7 @@
 	    				<div class="col-md-4 d-flex ftco-animate">
 	    					<div class="icon"><span class="icon-phone"></span></div>
 	    					<div class="text">
-	    						<h3 class="text-white">000 (123) 456 7890</h3>
+	    						<h3 class="text-white">123456789</h3>
 	    						<p class=text-white>A small river named Duden flows by their place and supplies.</p>
 	    					</div>
 	    				</div>
@@ -148,7 +148,7 @@
     </section>
 
     <section class="ftco-about d-md-flex">
-    	<div class="one-half img" style="background-image: url(images/about.jpg);"></div>
+    	<div class="one-half img" style="background-image: url({{asset('assets/images/about.jpg')}});"></div>
     	<div class="one-half ftco-animate">
     		<div class="overlap">
 				<div class="heading-section ftco-animate ">
@@ -216,22 +216,22 @@
     				<div class="row">
     					<div class="col-md-6">
     						<div class="menu-entry">
-		    					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
+		    					<a href="#" class="img" style="background-image: url({{asset('assets/images/menu-1.jpg')}});"></a>
 		    				</div>
     					</div>
     					<div class="col-md-6">
     						<div class="menu-entry mt-lg-4">
-		    					<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
+		    					<a href="#" class="img" style="background-image: url({{asset('assets/images/menu-2.jpg')}});"></a>
 		    				</div>
     					</div>
     					<div class="col-md-6">
     						<div class="menu-entry">
-		    					<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
+		    					<a href="#" class="img" style="background-image: url({{asset('assets/images/menu-3.jpg')}});"></a>
 		    				</div>
     					</div>
     					<div class="col-md-6">
     						<div class="menu-entry mt-lg-4">
-		    					<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
+		    					<a href="#" class="img" style="background-image: url({{asset('assets/images/menu-4.jpg')}});"></a>
 		    				</div>
     					</div>
     				</div>
@@ -240,7 +240,7 @@
     	</div>
     </section>
 
-    <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5">
+    <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url({{asset('assets/images/bg_2.jpg')}});" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
       <div class="container">
         <div class="row justify-content-center">
@@ -355,7 +355,7 @@
 
 
 
-    <section class="ftco-section img" id="ftco-testimony" style="background-image: url(images/bg_1.jpg);"  data-stellar-background-ratio="0.5">
+    <section class="ftco-section img" id="ftco-testimony" style="background-image: url({{ asset('assets/images/bg_1.jpg') }});"  data-stellar-background-ratio="0.5">
     	<div class="overlay"></div>
 	    <div class="container">
 	      <div class="row justify-content-center mb-5">
@@ -378,7 +378,7 @@
 {{--	                <div class="image mr-3 align-self-center">--}}
 {{--	                  <img src="images/person_1.jpg" alt="">--}}
 {{--	                </div>--}}
-	                <div class="name align-self-center">{{ $review->name }}<span class="position">Software Engineerr</span></div>
+	                <div class="name align-self-center">{{ $review->name }}</div>
 	              </div>
 	          </div>
 	        </div>
