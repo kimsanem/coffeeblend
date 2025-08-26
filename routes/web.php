@@ -99,4 +99,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], routes: functi
 
     // bookings section
     Route::get('all-bookings', [AdminsController::class, 'displayAllBookings'])->name('all.bookings');
+    Route::get('delete-booking/{id}', [AdminsController::class, 'deleteBooking'])->name('delete.booking');
+    Route::get('edit-booking/{id}', [AdminsController::class, 'editBooking'])->name('edit.booking');
+    Route::put('edit-booking/{id}', [AdminsController::class, 'updateBooking'])->name('update.booking');
 });

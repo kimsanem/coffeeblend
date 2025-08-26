@@ -171,5 +171,21 @@ class AdminsController extends Controller
         $allBookings = Booking::select()->orderBy('id', 'desc')->get();
         return view('admins.allbookings', compact('allBookings'));
     }
+    public function deleteBooking($id){
+        $booking = Booking::findOrFail($id);
+        $booking->delete();
+        return redirect()->route('all.bookings')->with(['delete', "booking deleted successfully."]);
+    }
+    public function editBooking($id){
+        $booking = Booking::findOrFail($id);
+        return view('admins.editbookings', compact('booking'));
+    }
+    public function updateBooking(Request $request, $id){
+        $booking = Booking::findOrFail($id);
+        $booking->update($request->all());
+        if($booking){
+            return redirect()->route('all.bookings')->with(['update' => "booking updated successfully."]);
+        }
+    }
 
 }

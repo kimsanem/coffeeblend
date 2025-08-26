@@ -7,24 +7,23 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-5 d-inline">Edit Order</h5>
-                    <p>Current Status is <b>{{ $order->status }}</b> </p>
-                    <form method="POST" action="{{route('update.order',$order->id)}}" enctype="multipart/form-data">
+                    <p>Current Status is <b>{{ $booking->status }}</b> </p>
+                    <form method="POST" action="{{route('update.booking',$booking->id)}}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-outline mb-4 mt-4">
 
                             <select name="status" class="form-select  form-control" aria-label="Default select example">
-{{--                                <option >Status</option>--}}
+                                {{--                                <option >Status</option>--}}
                                 <optgroup label="Status">
-
                                     <option value="Processing"
-                                        {{ $order->status === 'Processing' ? 'selected disabled' : '' }}>
+                                        {{ $booking->status === 'Processing' ? 'selected disabled' : '' }}>
                                         Processing
                                     </option>
 
-                                    <option value="Completed"
-                                        {{ $order->status === 'Completed' ? 'selected disabled' : '' }}>
-                                        Delivered
+                                    <option value="Booked"
+                                        {{ $booking->status === 'Booked' ? 'selected disabled' : '' }}>
+                                        Booked
                                     </option>
                                 </optgroup>
                             </select>
