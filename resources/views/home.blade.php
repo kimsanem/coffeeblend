@@ -37,7 +37,7 @@
             	<span class="subheading">Welcome</span>
               <h1 class="mb-4">The Best Coffee Testing Experience</h1>
               <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+              <p><a href="{{route('menu')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="{{route('menu')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
             </div>
 
           </div>
@@ -69,14 +69,27 @@
             	<span class="subheading">Welcome</span>
               <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
               <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+              <p><a href="{{route('menu')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="{{route('menu')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
             </div>
 
           </div>
         </div>
       </div>
     </section>
-
+    <div class="container">
+        @if( Session::has( 'date' ))
+            <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">
+                {{ Session::get( 'date' ) }}
+            </p>
+        @endif
+    </div>
+    <div class="container">
+        @if( Session::has( 'booked' ))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">
+                {{ Session::get( 'booked' ) }}
+            </p>
+        @endif
+    </div>
     <section class="ftco-intro">
     	<div class="container-wrap">
     		<div class="wrap d-md-flex align-items-xl-end">
@@ -105,41 +118,67 @@
 	    				</div>
 	    			</div>
 	    		</div>
-	    		<div class="book p-4">
-	    			<h3>Book a Table</h3>
-	    			<form action="#" class="appointment-form">
+
+	    		<div class="book p-4 w-30">
+                    <h3>Book a Table</h3>
+	    			<form action="{{ route('bookings.table') }}" method="POST" class="appointment-form">
+                        @csrf
 	    				<div class="d-md-flex">
 		    				<div class="form-group">
-		    					<input type="text" class="form-control" placeholder="First Name">
+		    					<input type="text" name="first_name" class="form-control" placeholder="First Name">
 		    				</div>
+                            @if($errors->has('first_name'))
+                                <p class="alert alert-success">{{ $errors->first('first_name') }}</p>
+                            @endif
 		    				<div class="form-group ml-md-4">
-		    					<input type="text" class="form-control" placeholder="Last Name">
+		    					<input type="text" name="last_name" class="form-control" placeholder="Last Name">
 		    				</div>
+                            @if($errors->has('last_name'))
+                                <p class="alert alert-success">{{ $errors->first('last_name') }}</p>
+                            @endif
 	    				</div>
 	    				<div class="d-md-flex">
 		    				<div class="form-group">
 		    					<div class="input-wrap">
-		            		<div class="icon"><span class="ion-md-calendar"></span></div>
-		            		<input type="text" class="form-control appointment_date" placeholder="Date">
-	            		</div>
-		    				</div>
+		            		        <div class="icon"><span class="ion-md-calendar"></span></div>
+		            		        <input type="text" name="date" class="form-control appointment_date" placeholder="Date">
+	            		        </div>
+                            </div>
+                            @if($errors->has('date'))
+                                <p class="alert alert-success">{{ $errors->first('date') }}</p>
+                            @endif
 		    				<div class="form-group ml-md-4">
 		    					<div class="input-wrap">
-		            		<div class="icon"><span class="ion-ios-clock"></span></div>
-		            		<input type="text" class="form-control appointment_time" placeholder="Time">
-	            		</div>
+		            		        <div class="icon"><span class="ion-ios-clock"></span></div>
+                                    <input type="text" name="time" class="form-control appointment_time" placeholder="Time">
+	            		        </div>
 		    				</div>
+                            @if($errors->has('time'))
+                                <p class="alert alert-success">{{ $errors->first('time') }}</p>
+                            @endif
 		    				<div class="form-group ml-md-4">
-		    					<input type="text" class="form-control" placeholder="Phone">
+                                <div class="icon"><span class="ion-ios-phone-portrait"></span></div>
+		    					<input type="text" name="phone" class="form-control" placeholder="Phone">
+		    				</div>
+                            @if($errors->has('phone'))
+                                <p class="alert alert-success">{{ $errors->first('phone') }}</p>
+                            @endif
+                            <div class="form-group ml-md-4">
+		    					<div class="input-wrap">
+                                    <input value="{{Auth::user()->id }}" name="user_id" type="hidden" class="form-control" placeholder="id">
+	            		        </div>
 		    				</div>
 	    				</div>
 	    				<div class="d-md-flex">
 	    					<div class="form-group">
-		              <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
-		            </div>
-		            <div class="form-group ml-md-4">
-		              <input type="submit" value="Appointment" class="btn btn-white py-3 px-4">
-		            </div>
+		                        <textarea name="message" id="message" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
+		                    </div>
+                            @if($errors->has('message'))
+                                <p class="alert alert-success">{{ $errors->first('message') }}</p>
+                            @endif
+                            <div class="form-group ml-md-4">
+                              <input type="submit" name="submit" value="Book" class="btn btn-white py-3 px-4">
+                            </div>
 	    				</div>
 	    			</form>
 	    		</div>
@@ -208,7 +247,7 @@
     				<div class="heading-section text-md-right ftco-animate">
 	          	<span class="subheading">Discover</span>
 	            <h2 class="mb-4 text-white">Our Menu</h2>
-	            <p class="mb-4 text-white">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+	            <p class="mb-4 text-white">Discover our menu and indulge in a perfect blend of flavors crafted to delight every moment</p>
 	            <p><a href="{{ route('menu') }}" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
 	          </div>
     			</div>
@@ -226,7 +265,7 @@
     					</div>
     					<div class="col-md-6">
     						<div class="menu-entry">
-		    					<a href="#" class="img" style="background-image: url({{asset('assets/images/menu-3.jpg')}});"></a>
+		    					<a href="#" class="img" style="background-image: url({{asset('assets/images/drink-10.jpg')}});"></a>
 		    				</div>
     					</div>
     					<div class="col-md-6">
@@ -294,7 +333,6 @@
 				<div class="col-md-7 heading-section ftco-animate text-center">
 					<span class="subheading">Discover</span>
 					<h2 class="mb-4 text-white">Best Coffee Sellers</h2>
-					<p class="text-white">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 				</div>
         	</div>
         	<div class="row">
@@ -321,70 +359,67 @@
     <section class="ftco-gallery">
     	<div class="container-wrap">
     		<div class="row no-gutters">
-					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-1.jpg')}});">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-search"></span>
-    					</div>
-						</a>
-					</div>
-					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-3.jpg')}});">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-search"></span>
-    					</div>
-						</a>
-					</div>
-					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-3.jpg')}});">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-search"></span>
-    					</div>
-						</a>
-					</div>
-					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-4.jpg')}});">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-search"></span>
-    					</div>
-						</a>
-					</div>
-        </div>
+                <div class="col-md-3 ftco-animate">
+                    <a href="#" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-1.jpg')}});">
+                        <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                        <span class="icon-search"></span>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3 ftco-animate">
+                    <a href="#" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-3.jpg')}});">
+                        <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                        <span class="icon-search"></span>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3 ftco-animate">
+                    <a href="#" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-3.jpg')}});">
+                        <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                        <span class="icon-search"></span>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3 ftco-animate">
+                    <a href="#" class="gallery img d-flex align-items-center" style="background-image: url({{asset('assets/images/gallery-4.jpg')}});">
+                        <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                        <span class="icon-search"></span>
+                    </div>
+                    </a>
+                </div>
+            </div>
     	</div>
     </section>
 
-
-
-    <section class="ftco-section img" id="ftco-testimony" style="background-image: url({{ asset('assets/images/bg_1.jpg') }});"  data-stellar-background-ratio="0.5">
-    	<div class="overlay"></div>
-	    <div class="container">
-	      <div class="row justify-content-center mb-5">
-	        <div class="col-md-7 heading-section text-center ftco-animate">
-	        	<span class="subheading">Testimony</span>
-	          <h2 class="mb-4 text-white">Customers Says</h2>
-	          <p class="text-white">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-	        </div>
-	      </div>
-	    </div>
-	    <div class="container-wrap">
-	      <div class="row d-flex no-gutters">
+<section class="ftco-section img" id="ftco-testimony" style="background-image: url({{asset('assets/images/bg_1.jpg')}});"  data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">Testimony</span>
+                <h2 class="mb-4 text-white">Customers Says</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container-wrap">
+        <div class="row d-flex no-gutters">
             @foreach($reviews as $review)
-	        <div class="col-md align-self-sm-end ftco-animate">
-	          <div class="testimony">
-	             <blockquote>
-	                <p>&rdquo;{{ $review->review }}.&rdquo;</p>
-	              </blockquote>
-	              <div class="author d-flex mt-4">
-{{--	                <div class="image mr-3 align-self-center">--}}
-{{--	                  <img src="images/person_1.jpg" alt="">--}}
-{{--	                </div>--}}
-	                <div class="name align-self-center">{{ $review->name }}</div>
-	              </div>
-	          </div>
-	        </div>
-              @endforeach
-	      </div>
-	    </div>
-	</section>
+                <div class="col-lg align-self-sm-end">
+                    <div class="testimony">
+                        <blockquote>
+                            <p>{{$review->review}}</p>
+                        </blockquote>
+                        <div class="author d-flex mt-4">
+{{--                            <div class="image mr-3 align-self-center">--}}
+{{--                                <img src="{{asset('assets/images/person_1.jpg')}}" alt="">--}}
+{{--                            </div>--}}
+                            <div class="name align-self-center">{{$review->name}} </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
 
 @endsection

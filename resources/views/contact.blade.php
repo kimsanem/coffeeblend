@@ -6,14 +6,14 @@
 
     <section class="home-slider owl-carousel">
 
-        <div class="slider-item" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+        <div class="slider-item" style="background-image: url({{asset('assets/images/bg_3.jpg')}});" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center">
 
                     <div class="col-md-7 col-sm-12 text-center ftco-animate">
                         <h1 class="mb-3 mt-5 bread">Contact Us</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Contact</span></p>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="{{route('home')}}">Home</a></span> <span>Contact</span></p>
                     </div>
 
                 </div>
@@ -27,19 +27,19 @@
                 <div class="col-md-4 contact-info ftco-animate">
                     <div class="row">
                         <div class="col-md-12 mb-4">
-                            <h2 class="h4">Contact Information</h2>
+                            <h2 class="h4 text-white">Contact Information</h2>
+                        </div>
+                        <div class="col-md-12 mb-3 text-white">
+                            <p><span>Address:</span> 123, Phnom Penh, 21th Street, Suite 721 Cambodia</p>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                            <p><span>Phone:</span> <a href="tel://1234567920">+123 456 789</a></p>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                            <p><span>Email:</span> <a href="mailto:info@yoursite.com">coffeeblend@gmail.com</a></p>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <p><span>Website:</span> <a href="#">yoursite.com</a></p>
+                            <p><span>Website:</span> <a target="_blank" href="https://cafeblend.netlify.app">coffeeblend.com</a></p>
                         </div>
                     </div>
                 </div>

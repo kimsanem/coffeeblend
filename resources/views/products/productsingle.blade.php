@@ -76,7 +76,7 @@
 					<input type="hidden" name="price" value="{{ $product->price }}">
 					<input type="hidden" name="image" value="{{ $product->image }}">
 					@if($checkingInCart == 0)
-						<button href="{{ route('add.cart', $product->id) }}" type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+						<button type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
 					@else
 						<button class="btn btn-primary py-3 px-5 btn btn-dark" disabled>Add to Cart</button>
 					@endif

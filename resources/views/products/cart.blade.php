@@ -4,14 +4,14 @@
 
     <section class="home-slider owl-carousel">
 
-      <div class="slider-item" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url({{asset('assets/images/bg_3.jpg')}});" data-stellar-background-ratio="0.5">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
             	<h1 class="mb-3 mt-5 bread">Cart</h1>
-	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
+	            <p class="breadcrumbs"><span class="mr-2"><a href="{{route('home')}}">Home</a></span> <span>Cart</span></p>
             </div>
 
           </div>
@@ -101,10 +101,10 @@
 					</p>
 				</div>
                 @if ($cartProducts->count() > 0)
-                    <form method="POST" action="{{ route('prepare.checkout') }}">
+                    <form method="POST" action="{{ route('prepare.checkout.post') }}">
                         @csrf
                         <input name="price" type="hidden" value="{{$totalPrice}}">
-                        <button type="submit" name="submit" class="btn btn-primary py-3 px-4">Proceed to checkout</button>
+                        <button type="submit" name="submit" class="btn btn-primary py-3 px-4"><span>Proceed to checkout</span></button>
                     </form>
                 @else
                     <a href="{{ route('cart' )}}" class="btn btn-primary py-3 px-4">No items in cart</a>
@@ -123,21 +123,28 @@
 					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
           		</div>
         	</div>
-                <div class="row">
-                    @foreach($relatedProducts as $relatedProduct)
-                        <div class="col-md-3">
-                            <div class="menu-entry">
-                                    <a href="{{ route('product.single', $relatedProduct->id) }}" class="img" style="background-image: url({{asset('assets/images/'.$relatedProduct->image.'')}});"></a>
-                                    <div class="text text-center pt-4">
-                                        <h3><a href="#">{{ $relatedProduct->name }}</a></h3>
-                                        <p>{{ $relatedProduct->description }}</p>
-                                        <p class="price"><span>${{ $relatedProduct->price }}</span></p>
-                                        <p><a href="{{ route('add.cart', $relatedProduct->id) }}" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                                    </div>
-                            </div>
+            <div class="row">
+                @foreach($relatedProducts as $relatedProduct)
+                    <div class="col-md-3">
+                        <div class="menu-entry">
+                                <a href="{{ route('product.single', $relatedProduct->id) }}" class="img" style="background-image: url({{asset('assets/images/'.$relatedProduct->image.'')}});"></a>
+                                <div class="text text-center pt-4">
+                                    <h3><a href="#">{{ $relatedProduct->name }}</a></h3>
+                                    <p>{{ $relatedProduct->description }}</p>
+                                    <p class="price"><span>${{ $relatedProduct->price }}</span></p>
+                                    <form action="{{ route('add.cart', $relatedProduct->id) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="pro_id" value="{{ $relatedProduct->id }}">
+                                        <input type="hidden" name="name" value="{{ $relatedProduct->name }}">
+                                        <input type="hidden" name="price" value="{{ $relatedProduct->price }}">
+                                        <input type="hidden" name="image" value="{{ $relatedProduct->image }}">
+                                        <button type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+                                    </form>
+                                </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
+            </div>
     	</div>
     </section>
 
