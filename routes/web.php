@@ -38,7 +38,7 @@ Route::get('/menu', [App\Http\Controllers\MenuController::class, 'menu'])->name(
 Route::get('/services', [App\Http\Controllers\ServicesController::class, 'index'])->name('services');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
-
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store')->middleware('auth');
 
 Route::group(['prefix' => 'products'], function () {
     // products route
@@ -54,6 +54,7 @@ Route::group(['prefix' => 'products'], function () {
     Route::post('/checkout', [ProductController::class, 'storeCheckout'])->name('process.checkout')->middleware('check.for.price');
 
     Route::post('/booking', [ProductController::class, 'BookTables'])->name('bookings.table');
+
 });
 // payment
 Route::group(['prefix' => 'payments'], function () {

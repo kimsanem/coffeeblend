@@ -23,6 +23,13 @@
 
     <section class="ftco-section contact-section">
         <div class="container mt-5">
+            <div class="container">
+                @if( Session::has( 'success' ))
+                    <p class="alert {{ Session::get('alert-class', 'alert-success') }}">
+                        {{ Session::get( 'success' ) }}
+                    </p>
+                @endif
+            </div>
             <div class="row block-9">
                 <div class="col-md-4 contact-info ftco-animate">
                     <div class="row">
@@ -45,27 +52,29 @@
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-6 ftco-animate">
-                    <form action="#" class="contact-form">
+                    <form action="{{route('contact.store')}}" method="POST" class="contact-form">
+                        @csrf
                         <div class="row">
+                            <input value="{{Auth::user()->id }}" name="user_id" type="hidden" class="form-control" placeholder="id">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name">
+                                    <input type="text" name="name" class="form-control" placeholder="Your Name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Email">
+                                    <input type="text" name="email" class="form-control" placeholder="Your Email">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject">
+                            <input type="text" name="subject" class="form-control" placeholder="Subject">
                         </div>
                         <div class="form-group">
-                            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                            <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                            <button type="submit" name="submit" value="Send Message" class="btn btn-primary py-3 px-5">Send Message</button>
                         </div>
                     </form>
                 </div>
